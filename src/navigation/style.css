@@ -10,10 +10,36 @@
 
 .nav-item {
     height: fit-content;
+    display: flex;
     margin-top: auto;
     margin-bottom: auto;
 }
 
-.nav-item input {
+.nav-item-m0 {
+    height: fit-content;
+    display: flex;
+}
+
+.navigation input {
     width: 50vw;
+}
+
+.navigation button{
+    height: fit-content;
+}
+
+/*TABLET VIEW*/
+@media only screen and (min-width: 768px) {
+
+}
+
+/*DESKTOP VIEW*/
+@media only screen and (min-width: 1025px) {
+}
+
+/*MOBILE VIEW*/
+@media only screen and (max-width: 767px) {
+    .navigation input {
+        width: 40vw;
+    }
 }

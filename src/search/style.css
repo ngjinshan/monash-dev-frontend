@@ -1,0 +1,17 @@
+.tags {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.tag {
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 6px;
+    border: 1px solid black;
+}
+
+.tag-delete {
+    cursor: pointer;
+    padding-left: 6px;
+    border-left: 1px solid black;
+}

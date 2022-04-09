@@ -6,16 +6,22 @@ import "./style.css";
 
 export const FlickrImages = () => {
 
-    const {images, } = useFlickrImgContext();
+    const {images, loading } = useFlickrImgContext();
 
-    useEffect(() => {
-        console.log(images);
-    },[images])
-
+    console.log(loading);
+    
     const showImages = (data : Image) => {
         return(
             <div className="col-lg-4">
-                <img src={data.url}></img>
+                <img className="image" src={data.url}></img>
+            </div>
+        )
+    }
+
+    const Loader = () => {
+        return(
+            <div className="col-lg">
+                <div className="lds-dual-ring"></div>
             </div>
         )
     }
@@ -25,7 +31,8 @@ export const FlickrImages = () => {
             <Navigation/>
             <div className="flickr container">
                 <div className="row">
-                    {images.map(showImages)}
+                    {loading && <Loader/>}
+                    {!loading && images.map(showImages)}
                 </div>
             </div>
         </div>
