@@ -1,0 +1,8 @@
+.flickr img{
+    width: 100%;
+    height: 300px;
+}
+
+.flickr .col-lg-4 {
+    margin-bottom: 10px;
+}

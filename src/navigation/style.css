@@ -1,0 +1,19 @@
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 66px;
+    background-color: rgba(0,0,0,.25);
+    margin-bottom: 66px;
+}
+
+.nav-item {
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nav-item input {
+    width: 50vw;
+}
