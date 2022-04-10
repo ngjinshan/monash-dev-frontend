@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { getFlickrImagesByTag } from "../api/flickrImage";
 import { useFlickrImgContext } from "../hooks/useFlickrImageContext";
 import "./style.css";
@@ -7,14 +9,28 @@ import "./style.css";
 export const Search = () => {
     const [tags, setTags] = useState<string[]>([]);
     const {setImages, setLoading} = useFlickrImgContext();
-    
-    const search = async () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(()=>{
+        if(searchParams.get("tags")){
+            getImages(searchParams.get("tags") || "");
+        }
+    },[location])
+
+    const search = () => {
+        navigate(`/?tags=${tags.join(",")}`)
+    }
+
+    const getImages = async (tagInput: string) => {
         setImages([]);
         setLoading(true);
-        const res = await getFlickrImagesByTag(tags.join(","));
+        const res = await getFlickrImagesByTag(tagInput);
         if(res.status === 200) {
             setImages(res.data)
             setLoading(false);
+            
         }
     }
 
@@ -22,10 +38,10 @@ export const Search = () => {
         setTags(tags.filter(e => e !== tag));
     }
 
-    const Tags = (tag: string) => {
+    const Tags = (tag: string, index: number) => {
         if(tag.trim() != ""){
             return(
-                <span className="tag">{tag} <span className="tag-delete" onClick={() => deleteTag(tag)}>X</span></span>
+                <span key={index} className="tag">{tag} <span className="tag-delete" onClick={() => deleteTag(tag)}>X</span></span>
             )
         }
     }

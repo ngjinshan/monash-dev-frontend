@@ -1,10 +1,17 @@
-.flickr img{
-    width: 100%;
-    height: 300px;
+.flickr-container {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
-.flickr .col-lg-4 {
-    margin-bottom: 10px;
+.flickr-item {
+    display: inline-block;
+    width: 100%;
+}
+
+.flickr-item img {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
 }
 
 .image {
@@ -18,6 +25,9 @@
 
 .lds-dual-ring {
     display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
   }
 .lds-dual-ring:after {
     content: " ";
@@ -37,4 +47,26 @@
 100% {
     transform: rotate(360deg);
 }
+}
+
+/*TABLET VIEW*/
+@media only screen and (min-width: 768px) {
+    .flickr-container {
+        column-count: 4;
+    }
+
+}
+
+/*DESKTOP VIEW*/
+@media only screen and (min-width: 1025px) {
+    .flickr-container {
+        column-count: 6;
+    }
+}
+
+/*MOBILE VIEW*/
+@media only screen and (max-width: 767px) {
+    .flickr-container {
+        column-count: 2;
+    }
 }

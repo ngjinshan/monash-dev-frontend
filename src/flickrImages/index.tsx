@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useFlickrImgContext } from "../hooks/useFlickrImageContext";
 import { Image } from "../models/Image";
 import { Navigation } from "../navigation";
@@ -7,33 +6,26 @@ import "./style.css";
 export const FlickrImages = () => {
 
     const {images, loading } = useFlickrImgContext();
-
-    console.log(loading);
     
-    const showImages = (data : Image) => {
+    const showImages = (data : Image, index: number) => {
         return(
-            <div className="col-lg-4">
-                <img className="image" src={data.url}></img>
+            <div className="flickr-item" key={index}>
+                <img className="image" src={data.url} ></img>
             </div>
         )
     }
 
     const Loader = () => {
         return(
-            <div className="col-lg">
-                <div className="lds-dual-ring"></div>
-            </div>
+            <div className="lds-dual-ring"></div>
         )
     }
 
     return(
         <div>
             <Navigation/>
-            <div className="flickr container">
-                <div className="row">
-                    {loading && <Loader/>}
-                    {!loading && images.map(showImages)}
-                </div>
+            <div className="flickr-container">
+                {loading ? <Loader/> : images.map(showImages)}
             </div>
         </div>
     )

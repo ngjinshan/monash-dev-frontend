@@ -3,6 +3,8 @@ import { BASE_URL, LOCAL_STORAGE_ACCESS_TOKEN } from "../common/constants";
 
 
 export const axiosInstance = () => {    
+
+    const controller = new AbortController();
     
     const _axiosInstance = axios.create({
         baseURL: BASE_URL,
@@ -24,6 +26,7 @@ export const axiosInstance = () => {
             }
 
             if(err.response.status === 401){
+                controller.abort();
                 window.location.href = "login";
             }else{
                 return new Promise((resolve, reject)=> {
