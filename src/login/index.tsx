@@ -11,6 +11,7 @@ export const Login = () => {
     const [password, setPassword] = useState<string>("");
 
     const {loggedIn, setLoggedIn} = useLoggedInContext();
+    const [display, setDisplay] = useState<string>("none");
 
 
     const loginButton = async () => {
@@ -18,7 +19,11 @@ export const Login = () => {
         if(res.status === 201) {
             localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN, res.data.access_token);
             setLoggedIn("LoggedIn");
+            setDisplay("none");
             navigate("/");
+        }
+        else{
+            setDisplay("initial");
         }
     }
 
@@ -42,7 +47,10 @@ export const Login = () => {
             </div>
             <div className="row">
                 <div className="col-lg-1" style={{textAlign: "left"}}>
-                <Button onClick={loginButton}>Login</Button>
+                <button onClick={loginButton}>Login</button>
+                </div>
+                <div className="col-lg-11" style={{textAlign: "left"}}>
+                    <div style={{fontStyle: "italic", color: "red", display: `${display}`}}>Incorrect credentials</div>
                 </div>
             </div>
         </div>
